@@ -130,8 +130,8 @@ class MotorState(models.Model):
                 })
             #Add status and upc to the product template
             pt.write({
-                'status': rec.x_studio_motorstate_status,
-                'upc': rec.x_studio_upc,
+                'x_studio_motorstate_status': rec.status,
+                'x_studio_upc': rec.upc,
             })
 
         return {
