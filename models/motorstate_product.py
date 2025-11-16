@@ -128,6 +128,11 @@ class MotorState(models.Model):
                     'name': ms_spec.name or '',
                     'value': ms_spec.value or '',
                 })
+            #Add status and upc to the product template
+            pt.write({
+                'status': rec.x_studio_motorstate_status,
+                'upc': rec.x_studio_upc,
+            })
 
         return {
             'type': 'ir.actions.client',
