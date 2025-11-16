@@ -1,0 +1,10 @@
+<record id="view_motorstate_product_spec_tree" model="ir.ui.view">
+    <field name="name">motorstate.product.spec.tree</field>
+    <field name="model">motorstate.product.spec</field>
+    <field name="arch" type="xml">
+        <list editable="bottom" create="1">
+            <field name="name" string="Specification Name"/>
+            <field name="value" string="Specification Value"/>
+        </list>
+    </field>
+</record>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_generate_ai_fields_multiple" model="ir.actions.act_window">
+        <field name="name">Generate AI Fields</field>
+        <field name="res_model">ai.generated.fields.multiple</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_product_ids': active_ids}</field>
+    </record>
+    <record id="motorstate_product_ai_field_tree_view" model="ir.ui.view">
+        <field name="name">motorstate.product.list.inherit</field>
+        <field name="model">motorstate.product</field>
+        <field name="inherit_id" ref="motorstate_integration.motorstate_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//list" position="inside">
+                <header>           
+                    <button
+                        name="%(ai_field_generator.action_generate_ai_fields_multiple)d"
+                        type="action"
+                        string="Generate AI Fields"
+                        class="btn-primary"
+                        icon="fa-magic"
+                    />
+                </header>
+            </xpath>
+            <xpath expr="//field[@name='part_brand']" position="after">
+                <field name="ai_fields_generated" optional="show" readonly="1"/>
+                <field name="product_created" optional="show" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="motorstate_product_ai_field_form_view" model="ir.ui.view">
+        <field name="name">motorstate.product.ai.field.form</field>
+        <field name="model">motorstate.product</field>
+        <field name="inherit_id" ref="motorstate_integration.motorstate_product_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[2]" position="after">
+                <page name="product_title" string="Product Title (Meta Data)">
+                    <group>
+                        <field name="product_title" widget="html"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[3]" position="after">
+                <page name="short_description" string="Short Description">
+                    <group>
+                        <field name="short_description" widget="html"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[4]" position="after">
+                <page name="ecom_description" string="Ecommerce Description">
+                    <group>
+                        <field name="ecom_description" widget="html"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[5]" position="after">
+                <page name="ecom_keywords" string="Ecommerce Keywords (Meta Data)">
+                    <group>
+                        <field name="ecom_keywords" widget="html"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[6]" position="after">
+                <page name="ecom_disclaimer" string="Ecommerce Disclaimer">
+                    <group>
+                        <field name="ecom_disclaimer" widget="html"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//notebook/page[7]" position="after">
+                <page name="specifications" string="Specifications">
+                    <field name="specification_ids">
+                        <list editable="bottom" create="1">
+                            <field name="sequence" widget="handle"/>
+                            <field name="name" string="Specification Name"/>
+                            <field name="value" string="Specification Value"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_generate_ai_fields"
+                        type="object"
+                        string="Generate AI Fields"
+                        class="btn-primary"
+                        icon="fa-magic"/>
+            </xpath>
+            <xpath expr="//header/button[@name='action_create_products_from_data']" position="replace">
+                <button name="action_create_products_from_data"
+                        type="object"
+                        string="Create Product"
+                        class="btn-secondary"
+                        invisible="not hide_update_btn"/>
+                <button name="action_create_products_from_data"
+                        type="object"
+                        string="Update Product"
+                        class="btn-secondary"
+                        invisible="hide_update_btn"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

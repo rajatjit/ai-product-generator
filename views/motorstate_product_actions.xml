@@ -1,0 +1,37 @@
+<odoo>
+  <record id="server_action_recompute_ai_flag" model="ir.actions.server">
+    <field name="name">Recompute AI Fields Generated</field>
+    <!-- Use the ir.model external id from the module that defines the model -->
+    <field name="model_id" ref="motorstate_integration.model_motorstate_product"/>
+    <field name="binding_model_id" ref="motorstate_integration.model_motorstate_product"/>
+    <field name="binding_view_types">list,kanban</field>
+    <field name="binding_type">action</field>
+    <field name="state">code</field>
+        <field name="code"><![CDATA[
+            records = env['motorstate.product'].browse(env.context.get('active_ids', []))
+            if records:
+                records._recompute_model(['ai_fields_generated'])
+                action = {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': env._('Done'),
+                        'message': env._('AI indicator recomputed for %s product(s).') % len(records),
+                        'type': 'success',
+                        'sticky': False,
+                    }
+                }
+            else:
+                action = {
+                    'type': 'ir.actions.client',
+                    'tag': 'display_notification',
+                    'params': {
+                        'title': env._('Nothing selected'),
+                        'message': env._('Please select one or more products first.'),
+                        'type': 'warning',
+                        'sticky': False,
+                    }
+                }
+            action]]></field>
+  </record>
+</odoo>

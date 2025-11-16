@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <odoo>
+    <record id="ai_spec_brand" model="ai.spec.option"><field name="name">Brand</field></record>
+    <record id="ai_spec_part_number" model="ai.spec.option"><field name="name">Item Number</field></record>
+    <record id="ai_spec_material" model="ai.spec.option"><field name="name">Material</field></record>
+    <record id="ai_spec_finish" model="ai.spec.option"><field name="name">Finish</field></record>
+    <record id="ai_spec_size" model="ai.spec.option"><field name="name">Size</field></record>
+    <record id="ai_spec_weight" model="ai.spec.option"><field name="name">Weight</field></record>
+    <record id="ai_spec_connection" model="ai.spec.option"><field name="name">Connection</field></record>
+    <record id="ai_spec_design" model="ai.spec.option"><field name="name">Design</field></record>
+  </odoo>

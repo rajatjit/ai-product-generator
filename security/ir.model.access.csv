@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id,perm_read,perm_write,perm_create,perm_unlink
+access_ai_generated_fields_wizard,ai.generated.fields.wizard,model_ai_generated_fields_wizard,,1,1,1,1
+access_motorstate_spec,motorstate.spec,model_motorstate_spec,,1,1,1,1
+access_ai_generated_fields_multiple,ai.generated.fields.multiple,model_ai_generated_fields_multiple,,1,1,1,1
+access_ai_spec_option,ai.spec.option,model_ai_spec_option,,1,1,1,1

@@ -1,0 +1,42 @@
+<odoo>
+  <record id="view_ai_generated_fields_wizard_form" model="ir.ui.view">
+    <field name="name">ai.generated.fields.wizard.form</field>
+    <field name="model">ai.generated.fields.wizard</field>
+    <field name="arch" type="xml">
+      <form string="Generate AI Fields">
+        <sheet>
+          <group>
+            <group>
+              <field name="generate_title"/>
+              <field name="generate_description"/>
+              <field name ="generate_disclaimer"/>
+            </group>
+            <group>
+              <field name="generate_keywords"/>
+              <field name ="generate_shortDesc"/>
+              <field name="generate_specifications" widget="boolean_toggle"/>
+            </group>
+          </group>
+          <group>
+            <field name="required_spec_option_ids"
+                   widget="many2many_tags"
+                   invisible="not generate_specifications"/>
+          </group>
+          <group>
+            <field name="global_prompt"/>
+          </group>
+          <group>
+            <field name="doc_attachment" widget="binary" filename="doc_filename"/>
+          </group>
+        </sheet>
+        <footer>
+          <button name="action_generate_ai_fields"
+                  type="object"
+                  string="Generate"
+                  class="btn-primary"/>
+          <button string="Cancel" special="cancel"/>
+        </footer>
+      </form>
+    </field>
+  </record>
+</odoo>
